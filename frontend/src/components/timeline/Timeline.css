@@ -1,0 +1,15 @@
+.timeline {
+    flex: 6;
+}
+
+.timelineWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 左詰めにする */
+    padding: 20px;
+}
+
+.timelineWrapper .post {
+    width: calc(25% - 10px); /* 4つ並べるために25%幅に設定 */
+    margin: 10px; /* カード間のスペースを調整 */
+}

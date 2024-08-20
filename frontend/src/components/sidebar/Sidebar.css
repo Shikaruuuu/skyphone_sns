@@ -1,0 +1,47 @@
+.sidebar {
+    flex: 2;
+    height: 90vh;
+}
+
+.sidebarWrapper {
+    padding: 20px;
+}
+
+.sidebarList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebarListItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    cursor: pointer;
+    box-shadow: 3px 7px 13px -10px #65789f;
+    border-radius: 10px;
+}
+
+.sidebarListItem:hover {
+    box-shadow: none;
+    transform: translateY(5px);
+    transition: all 0.3s;
+}
+
+.sidebarListItemText {
+    width: 100%;
+    font-size: 20px;
+    padding-top: 3px;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+}
+
+.sidebarLink {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: black; /* テキストの色 */
+    text-decoration: none; /* テキストの下線を消す */
+  }

@@ -1,0 +1,46 @@
+.followers {
+    flex: 6;
+  }
+  
+  .followersWrapper {
+    padding: 20px;
+  }
+  
+  .followersWrapper h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .followersWrapper ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .followersWrapper li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 4px 6px;
+    width: 50%;
+    cursor: pointer;
+    box-shadow: 3px 7px 13px -10px #65789f;
+    border-radius: 10px;
+  }
+  
+  .followerUser {
+    display: flex;
+    align-items: center;
+  }
+  
+  .followerUserImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .followerUsername {
+    font-size: 18px;
+  }
+  
