@@ -76,9 +76,9 @@ export default function Profile() {
           </div>
           <div className="profileRightBottom">
             <Timeline isProfile={true} profileUserId={userId} />
-            <Rightbar user={user} />
           </div>
         </div>
+        <Rightbar user={user} />
       </div>
     </>
   );

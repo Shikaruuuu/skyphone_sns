@@ -12,6 +12,24 @@ export default function Rightbar() {
     <div className="rightbar">
       <div className="rightbarWrapper">
         <ul className="rightbarList">
+        <li className="rightbarListItem">
+            <Person  className="rightbarIcon"/>
+            <Link to={`/followingList/${user.id}/followings`} className="rightbarListItemText" style={{ textDecoration: "none", color: "black" }}>
+            <span className="rightbarListItemText">相談を作成</span>
+            </Link>
+          </li>
+          <li className="rightbarListItem">
+            <Person  className="rightbarIcon"/>
+            <Link to={`/followingList/${user.id}/followings`} className="rightbarListItemText" style={{ textDecoration: "none", color: "black" }}>
+            <span className="rightbarListItemText">相談管理</span>
+            </Link>
+          </li>
+          <li className="rightbarListItem">
+            <Person  className="rightbarIcon"/>
+            <Link to={`/followingList/${user.id}/followings`} className="rightbarListItemText" style={{ textDecoration: "none", color: "black" }}>
+            <span className="rightbarListItemText">リクエスト管理</span>
+            </Link>
+          </li>
           <li className="rightbarListItem">
             <Person  className="rightbarIcon"/>
             <Link to={`/followingList/${user.id}/followings`} className="rightbarListItemText" style={{ textDecoration: "none", color: "black" }}>
