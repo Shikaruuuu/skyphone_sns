@@ -10,7 +10,7 @@ export default function Request() {
   const { postId } = useParams(); // URLからpostIdを取得します。
   const [post, setPost] = useState({});
   const [user, setUser] = useState({});
-  const [showDialog, setShowDialog] = useState(false); // ダイアログの表示状態を管理
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -27,12 +27,12 @@ export default function Request() {
     fetchPost();
   }, [postId]);
 
-  const handleReservationClick = () => {
-    setShowDialog(true); // ダイアログを表示
+  const handleOpen = () => {
+    setOpen(true);
   };
 
-  const handleDialogClose = () => {
-    setShowDialog(false); // ダイアログを閉じる
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -42,7 +42,7 @@ export default function Request() {
                 <span className='requestName'>{post.title}</span>
             </div>
             <div className='requestUpperMiddle'>
-                <img src={post.img ? PUBLIC_FOLDER + post.img : PUBLIC_FOLDER + "/post/noPostImg.png"} alt="" className="postImg" />
+                <img src={post.img ? PUBLIC_FOLDER + post.img : PUBLIC_FOLDER + "/post/noPostImg.png"} alt="" className="requestImg" />
             </div>
             <div className='requestMiddle'>
                 <span className='requestContent'>{post.content}</span>
@@ -52,12 +52,10 @@ export default function Request() {
                 <span className='userName'>投稿者: {user.username}</span>
             </div>
             <div className='requestBottom'>
-                <button className="requestButton" onClick={handleReservationClick}>予約リクエスト</button>
+                <button className="requestButton" onClick={handleOpen}>予約リクエスト</button>
+                <ReservationDialog open={open} onClose={handleClose} postId={post.id} />  
             </div>
         </div>
-        {showDialog && (
-          <ReservationDialog postId={post.id} onClose={handleDialogClose} />
-        )}
     </div>
   );
 }

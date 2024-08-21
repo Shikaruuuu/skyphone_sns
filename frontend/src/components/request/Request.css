@@ -1,0 +1,77 @@
+.request{
+    width: 50%;
+    height: 1000px;
+    box-shadow: 3px 7px 13px -10px #65789f;
+    border-radius: 10px;
+}
+
+.requestWrapper{
+    padding: 10px;
+}
+
+.requestTop{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-direction: column;
+}
+
+.requestName{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.requestUpperMiddle{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 700px;
+}
+
+.requestImg{
+    width: 100%;
+    max-height: 700px;
+    object-fit: cover;
+}
+
+.requestMiddle{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.requestContent{
+    font-size: 20px;
+}
+
+.requestLowerMiddle{
+    display: flex;
+    flex-direction: column;
+}
+
+.price{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.userName{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.requestBottom{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.requestButton{
+    border: none;
+    padding: 6px 17px;
+    background-color: #59b7f5;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    align-self: center;
+}

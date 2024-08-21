@@ -1,54 +1,77 @@
 import React, { useState, useEffect } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import axios from 'axios';
-import "./ReservationDialog.css";
 
-export default function ReservationDialog({ postId, onClose }) {
-  const [availableSlots, setAvailableSlots] = useState([]);
-  const [selectedSlot, setSelectedSlot] = useState(null);
+export default function ReservationDialog({ open, onClose, postId }) {
+  const [slots, setSlots] = useState([]);
+  const [selectedSlot, setSelectedSlot] = useState("");
 
   useEffect(() => {
-    const fetchAvailableSlots = async () => {
+    const fetchSlots = async () => {
       try {
-        const response = await axios.get(`/reservation/slots/${postId}`);
-        setAvailableSlots(response.data);
+        const response = await axios.get(`/api/reservationslots/${postId}`);
+        setSlots(response.data);
       } catch (err) {
-        console.error("Error fetching available slots:", err);
+        console.error("Error fetching reservation slots:", err);
       }
     };
-    fetchAvailableSlots();
-  }, [postId]);
 
-  const handleSlotSelect = (slot) => {
-    setSelectedSlot(slot);
+    if (open) {
+      fetchSlots();
+    }
+  }, [open, postId]);
+
+  const handleSlotChange = (event) => {
+    setSelectedSlot(event.target.value);
   };
 
   const handleSubmit = async () => {
-    if (!selectedSlot) return;
-
     try {
-      await axios.post(`/reservations/request`, {
-        slotId: selectedSlot.id,
+      await axios.post(`/api/reservations`, {
+        postId,
+        slotDate: selectedSlot,
+        status: "pending",
       });
-      onClose(); // ダイアログを閉じる
+      onClose();
     } catch (err) {
       console.error("Error submitting reservation request:", err);
     }
   };
 
   return (
-    <div className="reservationDialog">
-      <div className="reservationDialogContent">
-        <h3>予約可能な日時を選択してください</h3>
-        <ul className="slotList">
-          {availableSlots.map((slot) => (
-            <li key={slot.id} onClick={() => handleSlotSelect(slot)} className={selectedSlot?.id === slot.id ? "selected" : ""}>
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
+      <DialogTitle>予約リクエスト</DialogTitle>
+      <DialogContent>
+        <Select
+          value={selectedSlot}
+          onChange={handleSlotChange}
+          displayEmpty
+          fullWidth
+        >
+          <MenuItem value="" disabled>
+            予約可能な日時を選択してください
+          </MenuItem>
+          {slots.map((slot, index) => (
+            <MenuItem key={index} value={slot.slotDate}>
               {new Date(slot.slotDate).toLocaleString()}
-            </li>
+            </MenuItem>
           ))}
-        </ul>
-        <button onClick={handleSubmit} disabled={!selectedSlot}>リクエスト送信</button>
-        <button onClick={onClose}>キャンセル</button>
-      </div>
-    </div>
+        </Select>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="primary">
+          キャンセル
+        </Button>
+        <Button onClick={handleSubmit} color="primary" variant="contained">
+          予約リクエスト送信
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }

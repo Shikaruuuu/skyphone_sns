@@ -38,7 +38,7 @@ export default function Post({ post }) {
           <Link to={`/profile/${user.id}`} className="postUserNameLink">
             <span className="postUserName">{user.username}</span>
           </Link>
-            <span className="price">￥{post.price}</span>
+            <span className="postPrice">￥{post.price}</span>
           </div>
         </div>
       </Link>
