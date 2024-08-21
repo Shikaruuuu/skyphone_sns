@@ -7,10 +7,12 @@ import axios from 'axios';
 export default function Share() {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user } = useContext(AuthContext);
+    const title = useRef();
     const content = useRef();
-    const [file, setFile] = useState(null);
     const [price, setPrice] = useState("");
     const [reservationSlots, setReservationSlots] = useState([{ date: "", time: "" }]);
+    const [img, setImg] = useState();
+
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,16 +20,17 @@ export default function Share() {
 
         const newPost = {
             userId: user.id,
+            title: title.current.value,
             content: content.current.value,
             price: price,
             reservationSlots,
         };
 
-        if(file) {
+        if(img) {
             const data = new FormData();
-            const fileName = Date.now() + file.name;
+            const fileName = Date.now() + img.name;
             data.append("name", fileName);
-            data.append("file", file);
+            data.append("file", img);
             newPost.img = fileName;
             try {
                 await axios.post("/upload", data);
@@ -62,29 +65,31 @@ export default function Share() {
         <div className="share">
             <div className="shareWrapper">
                 <div className="shareTop">
-                    <img src={user.profilePicture ? PUBLIC_FOLDER + user.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="shareProfileImg" />
-                    <input type="text" className="shareInput" placeholder="今何してるの" ref={content} />
+                    <span className='title'>相談タイトル</span>
+                    <input type="text" className="inputTitle" placeholder="相談タイトルを入力してください。" ref={title} />
                 </div>
-                <hr className="shareHr" />
-
+                <div className='shareMiddle'>
+                    <span className='content'>相談内容</span>
+                    <input type="text" className="inputContent" placeholder="相談内容を入力してください。" ref={content} />
+                </div>
+                <div className="img">
+                        <label>サムネイル画像</label>
+                        <input type='file' id='file' accept='.png, .jpeg, .jpg ' onChange={(e) => setImg(e.target.files[0])}/>
+                </div>
                 <form className="shareButtons" onSubmit={(e) => handleSubmit(e)}>
-                    <div className="shareOptions">
-                        <label className="shareOption" htmlFor='file'>
-                            <Image className="shareIcon" htmlColor='blue' />
-                            <span className="shareOptionText">画像</span>
-                            <input type='file' id='file' accept='.png, .jpeg, .jpg, .gif' style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
-                        </label>
+                    <div className='priceSetting'>
+                        <span className='priceTitle'>サービス価格</span>
                         <input
                             type="number"
                             placeholder="価格を設定"
-                            className="shareInput"
+                            className="inputTitle"
                             value={price}
                             onChange={(e) => setPrice(Number(e.target.value))}
                         />
                     </div>
 
                     <div className="shareReservationSlots">
-                        <h4>予約リクエスト枠を追加</h4>
+                        <span className='requestSlotTitle'>予約リクエスト枠を追加</span>
                         {reservationSlots.map((slot, index) => (
                             <div key={index} className="shareSlot">
                                 <input
@@ -103,8 +108,7 @@ export default function Share() {
                             + 追加
                         </button>
                     </div>
-
-                    <button className="shareButton" type='submit'>投稿</button>
+                    <button className="shareButton" type='submit'>公開する</button>
                 </form>
             </div>
         </div>

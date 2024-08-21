@@ -18,7 +18,7 @@ export default function Topbar() {
     <div className="topbarContainer">
       <div className="topbarLeft">
         <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-          <span className="logo">SNSアプリ</span>
+          <span className="logo">SkyPhone</span>
         </Link>
       </div>
       <div className="topbarCenter">

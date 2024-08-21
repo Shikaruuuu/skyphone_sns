@@ -31,9 +31,17 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: "other",
       },
-      content: {
+      title: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: [0, 100],
+        },
+        defaultValue: "無題の相談",
+      },
+      content: {
+        type: DataTypes.STRING,
+        allowNull: true,
         validate: {
           len: [0, 500],
         },

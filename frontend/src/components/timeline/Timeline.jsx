@@ -38,9 +38,6 @@ export default function Timeline({ isProfile, profileUserId }) {
   return (
     <div className="timeline">
       <div className="timelineWrapper">
-        {String(profileUserId) === String(user.id) && (
-        <Share />
-        )}
         {posts.map((post) => (
           <Post post={post} key={post.id} />
         ))}

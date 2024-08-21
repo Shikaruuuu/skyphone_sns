@@ -1,13 +1,11 @@
 import "./Post.css";
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../state/AuthContext";
 const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
 export default function Post({ post }) {
   const [user, setUser] = useState({});
-  const { user: currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -31,7 +29,7 @@ export default function Post({ post }) {
             <img src={post.img ? PUBLIC_FOLDER + post.img : PUBLIC_FOLDER + "/post/noPostImg.png"} alt="" className="postImg" />
         </div>
         <div className="postInfo">
-          <span className="postText">{post.content} </span>
+          <span className="postText">{post.title} </span>
         </div>
         <div className="postBottom">
           <Link to={`/profile/${user.id}`}>

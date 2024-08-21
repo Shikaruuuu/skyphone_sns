@@ -42,8 +42,8 @@ export default function Login() {
         <div className="login">
             <div className="loginWrapper">
                 <div className="loginLeft">
-                    <h3 className="loginLogo">SNS</h3>
-                    <span className='loginDesc'>人と人を繋ぐ令和のSNS</span>
+                    <h3 className="loginLogo">SkyPhone</h3>
+                    <span className='loginDesc'>その悩み、誰かに電話で相談してみよう</span>
                 </div>
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
