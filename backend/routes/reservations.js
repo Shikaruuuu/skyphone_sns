@@ -100,14 +100,14 @@ router.get("/post/:postId", async (req, res) => {
 router.get("/slots/:postId", async (req, res) => {
   try {
     const slots = await ReservationSlot.findAll({
-      where: { postId: req.params.postId },
+      where: {
+        postId: req.params.postId,
+        status: "pending",
+      },
     });
     res.status(200).json(slots);
   } catch (err) {
-    console.error("Error fetching reservation slots:", err);
-    res
-      .status(500)
-      .json({ message: "Failed to fetch reservation slots", error: err });
+    res.status(500).json({ error: "Failed to fetch reservation slots" });
   }
 });
 

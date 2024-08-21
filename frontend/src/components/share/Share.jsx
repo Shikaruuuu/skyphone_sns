@@ -13,7 +13,6 @@ export default function Share() {
     const [reservationSlots, setReservationSlots] = useState([{ date: "", time: "" }]);
     const [img, setImg] = useState();
 
-    
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!user) return;  // user が null なら処理を中断
@@ -23,10 +22,13 @@ export default function Share() {
             title: title.current.value,
             content: content.current.value,
             price: price,
-            reservationSlots,
+            slots: reservationSlots.map(slot => {
+                const dateTime = `${slot.date}T${slot.time}:00`;
+                return new Date(dateTime).toISOString();
+            })
         };
 
-        if(img) {
+        if (img) {
             const data = new FormData();
             const fileName = Date.now() + img.name;
             data.append("name", fileName);
@@ -61,7 +63,7 @@ export default function Share() {
         return null; // user が null なら何も表示しない
     }
 
-        return (
+    return (
         <div className="share">
             <div className="shareWrapper">
                 <div className="shareTop">
@@ -73,8 +75,8 @@ export default function Share() {
                     <input type="text" className="inputContent" placeholder="相談内容を入力してください。" ref={content} />
                 </div>
                 <div className="img">
-                        <label>サムネイル画像</label>
-                        <input type='file' id='file' accept='.png, .jpeg, .jpg ' onChange={(e) => setImg(e.target.files[0])}/>
+                    <label>サムネイル画像</label>
+                    <input type='file' id='file' accept='.png, .jpeg, .jpg ' onChange={(e) => setImg(e.target.files[0])} />
                 </div>
                 <form className="shareButtons" onSubmit={(e) => handleSubmit(e)}>
                     <div className='priceSetting'>

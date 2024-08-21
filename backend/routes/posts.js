@@ -10,7 +10,6 @@ router.post("/", async (req, res) => {
       title: req.body.title,
       content: req.body.content,
       img: req.body.img,
-      likes: req.body.likes || [],
       price: req.body.price,
     });
 

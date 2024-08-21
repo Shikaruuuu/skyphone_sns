@@ -6,7 +6,7 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
-const reservationRoute = require("./routes/reservation");
+const reservationRoute = require("./routes/reservations");
 const PORT = process.env.PORT || 4000;
 const { Pool } = require("pg");
 const path = require("path");
@@ -50,7 +50,7 @@ app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
-app.use("api/reservation", reservationRoute);
+app.use("api/reservations", reservationRoute);
 
 // グローバルエラーハンドラー
 app.use((err, req, res, next) => {

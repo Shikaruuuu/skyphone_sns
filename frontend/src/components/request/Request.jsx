@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import "./Request.css";
+import ReservationDialog from "../../components/reservationDialog/ReservationDialog";
+
 const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
 export default function Request() {
   const { postId } = useParams(); // URLからpostIdを取得します。
   const [post, setPost] = useState({});
   const [user, setUser] = useState({});
+  const [showDialog, setShowDialog] = useState(false); // ダイアログの表示状態を管理
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -23,6 +26,14 @@ export default function Request() {
     };
     fetchPost();
   }, [postId]);
+
+  const handleReservationClick = () => {
+    setShowDialog(true); // ダイアログを表示
+  };
+
+  const handleDialogClose = () => {
+    setShowDialog(false); // ダイアログを閉じる
+  };
 
   return (
     <div className="request">
@@ -41,9 +52,12 @@ export default function Request() {
                 <span className='userName'>投稿者: {user.username}</span>
             </div>
             <div className='requestBottom'>
-                <button className="requestButton" type='submit'>予約リクエスト</button>
+                <button className="requestButton" onClick={handleReservationClick}>予約リクエスト</button>
             </div>
         </div>
+        {showDialog && (
+          <ReservationDialog postId={post.id} onClose={handleDialogClose} />
+        )}
     </div>
   );
 }

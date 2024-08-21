@@ -15,6 +15,7 @@ const models = {
   Post,
   Follow,
   Reservation,
+  ReservationSlot,
 };
 
 Object.keys(models).forEach((modelName) => {

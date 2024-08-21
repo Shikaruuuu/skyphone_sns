@@ -23,6 +23,11 @@ module.exports = (sequelize) => {
         type: DataTypes.DATE,
         allowNull: false,
       },
+      status: {
+        type: DataTypes.ENUM("pending", "approved", "rejected"),
+        allowNull: false,
+        defaultValue: "pending",
+      },
     },
     {
       timestamps: true,
