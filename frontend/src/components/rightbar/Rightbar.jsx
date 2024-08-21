@@ -14,7 +14,7 @@ export default function Rightbar() {
         <ul className="rightbarList">
         <li className="rightbarListItem">
             <Person  className="rightbarIcon"/>
-            <Link to={`/followingList/${user.id}/followings`} className="rightbarListItemText" style={{ textDecoration: "none", color: "black" }}>
+            <Link to={`/createPost/${user.id}`} className="rightbarListItemText" style={{ textDecoration: "none", color: "black" }}>
             <span className="rightbarListItemText">相談を作成</span>
             </Link>
           </li>

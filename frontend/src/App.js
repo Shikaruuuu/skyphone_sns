@@ -11,6 +11,7 @@ import Register from "./pages/register/Register";
 import FollowingList from "./pages/followingList/FollowingList";
 import FollowerList from "./pages/followerList/FollowerList";
 import Settings from "./pages/settings/Settings";
+import CreatePost from "./pages/createPost/CreatePost";
 import { AuthContext } from "./state/AuthContext";
 import { useContext } from "react";
 import React from "react";
@@ -42,6 +43,10 @@ function App() {
         <Route
           path="/settings/:userId"
           element={user ? <Settings /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/createPost/:userId"
+          element={user ? <CreatePost /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>
