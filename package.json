@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"npm start --prefix backend\" \"npm start --prefix frontend\""
+    "start": "concurrently \"npm start --prefix backend\" \"npm start --prefix frontend\"",
+    "build": "react-scripts build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
