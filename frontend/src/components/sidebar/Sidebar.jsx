@@ -28,6 +28,16 @@ export default function Sidebar() {
             </Link>
           </li>
           <li className="sidebarListItem">
+            <Link to={`/followingList/${user.id}/followings`} className="sidebarListItemText" style={{ textDecoration: "none", color: "black" }}>
+            <span className="sidebarListItemText">就活の相談</span>
+            </Link>
+          </li>
+          <li className="sidebarListItem">
+            <Link to={`/followingList/${user.id}/followings`} className="sidebarListItemText" style={{ textDecoration: "none", color: "black" }}>
+            <span className="sidebarListItemText">転職の相談</span>
+            </Link>
+          </li>
+          <li className="sidebarListItem">
             <Link to={`/followerList/${user.id}/followers`} className="sidebarListItemText" style={{ textDecoration: "none", color: "black" }}>
             <span className="sidebarListItemText">恋愛相談</span>
             </Link>
