@@ -1,4 +1,4 @@
-.topbarContainer{
+.topbarMobileContainer{
     background-color: #59b7f5;
     height: 50px;
     width: 100%;
@@ -9,13 +9,13 @@
     z-index: 100;
 }
 
-.topbarLeft {
+.topbarMobileLeft {
     flex: 3;
 }
-.topbarCenter {
-    flex: 5;
+.topbarMobileCenter {
+    flex: 2;
 }
-.topbarRight {
+.topbarMobileRight {
     flex: 4;
 }
 
@@ -50,7 +50,7 @@
     outline: none;
 }
 
-.topbarRight {
+.topbarMobileRight {
     flex: 4;
     display: flex;
     align-items: center;
@@ -58,26 +58,26 @@
     color: white;
 }
 
-.topbarItemIcons {
+.topbarMobileItemIcons {
     display: flex;
     margin-right: 10px;
 }
 
-.topbarIconItem {
+.topbarMobileIconItem {
     margin-right: 15px;
     cursor: pointer;
     position: relative;
 }
 
-.topbarImg {
-    width: 32px;
-    height: 32px;
+.topbarMobileImg {
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     cursor: pointer;
     object-fit: cover;
 }
 
-.topbarIconBadge {
+.topbarMobileIconBadge {
     position: absolute;
     top: -5px;
     right: -5px;

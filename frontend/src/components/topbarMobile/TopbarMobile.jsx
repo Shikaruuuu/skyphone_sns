@@ -1,7 +1,7 @@
-import { ExitToApp, Notifications, Search } from "@mui/icons-material";
+import { ExitToApp, Notifications } from "@mui/icons-material";
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./TopbarMobileMobile.css";
+import "./TopbarMobile.css";
 import { AuthContext } from "../../state/AuthContext";
 
 export default function TopbarMobile() {
@@ -15,17 +15,17 @@ export default function TopbarMobile() {
   };
 
   return (
-    <div className="TopbarMobileContainer">
-      <div className="TopbarMobileLeft">
+    <div className="topbarMobileContainer">
+      <div className="topbarMobileLeft">
         <Link to="/" style={{ textDecoration: "none", color: "black" }}>
           <span className="logo">SkyPhone</span>
         </Link>
       </div>
-      <div className="TopbarMobileRight">
-        <div className="TopbarMobileItemIcons">
-          <div className="TopbarMobileIconItem">
+      <div className="topbarMobileCenter"></div>
+      <div className="topbarMobileRight">
+        <div className="topbarMobileItemIcons">
+          <div className="topbarMobileIconItem">
             <Notifications />
-            <span className="TopbarMobileIconBadge">2</span>
           </div>
           {user && (
             <>
@@ -37,10 +37,10 @@ export default function TopbarMobile() {
                       : PUBLIC_FOLDER + "/person/noAvatar.png"
                   }
                   alt=""
-                  className="TopbarMobileImg"
+                  className="topbarMobileImg"
                 />
               </Link>
-              <div className="TopbarMobileIconItem" onClick={handleLogout}>
+              <div className="topbarMobileIconItem" onClick={handleLogout}>
                 <ExitToApp />
               </div>
             </>
