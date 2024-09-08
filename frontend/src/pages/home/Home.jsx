@@ -30,7 +30,6 @@ export default function Home() {
       <div className="homeContainer">
         {/* <Sidebar /> */}
         <Timeline isProfile={false} />
-        <BusinessTimeline isProfile={false} />
         {windowWidth >= 1036 ? <Rightbar /> : <Hamburger />}
       </div>
     </>

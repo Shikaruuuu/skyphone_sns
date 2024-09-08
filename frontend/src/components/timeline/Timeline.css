@@ -7,9 +7,27 @@
     flex-wrap: wrap;
     justify-content: center; /* 左詰めにする */
     padding: 20px;
+    flex-direction: column;
 }
 
 .timelineWrapper .post {
     width: calc(25% - 10px); /* 4つ並べるために25%幅に設定 */
     margin: 10px; /* カード間のスペースを調整 */
 }
+
+.categorySection {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.categoryName {
+    font-size: 20px;
+    font-weight: bold;
+}
+  
+  .categoryPosts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
