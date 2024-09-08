@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Topbar from "../../components/topbar/Topbar";
-import Sidebar from "../../components/sidebar/Sidebar";
 import Timeline from "../../components/timeline/Timeline";
 import Rightbar from "../../components/rightbar/Rightbar";
 import "./Home.css";
 import TopbarMobile from "../../components/topbarMobile/TopbarMobile";
 import Hamburger from "../../components/hamburger/Hamburger";
-import BusinessTimeline from "../../components/businessTimeline/BusinessTimeline";
 
 export default function Home() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -28,7 +26,6 @@ export default function Home() {
     <>
       {windowWidth >= 1036 ? <Topbar /> : <TopbarMobile />}
       <div className="homeContainer">
-        {/* <Sidebar /> */}
         <Timeline isProfile={false} />
         {windowWidth >= 1036 ? <Rightbar /> : <Hamburger />}
       </div>
