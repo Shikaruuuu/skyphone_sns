@@ -11,6 +11,7 @@ router.post("/", async (req, res) => {
       content: req.body.content,
       img: req.body.img,
       price: req.body.price,
+      category: req.body.category,
     });
 
     // 予約枠を作成する

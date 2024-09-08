@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./Timeline.css";
+import "./BusinessTimeline.css";
 import Post from "../post/Post";
 import axios from "axios";
 import { AuthContext } from "../../state/AuthContext";
 
-export default function Timeline({ isProfile, profileUserId }) {
+export default function BusinessTimeline({ isProfile, profileUserId }) {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(AuthContext);
 
@@ -15,11 +15,13 @@ export default function Timeline({ isProfile, profileUserId }) {
         if (isProfile && profileUserId) {
           // プロフィール画面では特定のユーザーの投稿を取得
           console.log(`Fetching posts for user ID: ${profileUserId}`);
-          response = await axios.get(`/posts/timeline/${profileUserId}`);
+          response = await axios.get(
+            `/posts/businessTimeline/${profileUserId}`
+          );
         } else {
           // ホーム画面では全てのユーザーの投稿を取得
           console.log("Fetching all posts");
-          response = await axios.get(`/posts/timeline/all`);
+          response = await axios.get(`/posts/businessTimeline/all`);
         }
         console.log("Posts fetched successfully:", response.data);
         setPosts(
@@ -35,8 +37,11 @@ export default function Timeline({ isProfile, profileUserId }) {
   }, [profileUserId, isProfile]);
 
   return (
-    <div className="timeline">
-      <div className="timelineWrapper">
+    <div className="businessTimeline">
+      <div className="busineesTimelineHeader">
+        <span className="tuimelineTitle">仕事</span>
+      </div>
+      <div className="businessTimelineWrapper">
         {posts.map((post) => (
           <Post post={post} key={post.id} />
         ))}
