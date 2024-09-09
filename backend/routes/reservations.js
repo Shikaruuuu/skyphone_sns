@@ -97,7 +97,7 @@ router.get("/post/:postId", async (req, res) => {
 });
 
 // 予約枠を取得するエンドポイント
-router.get("/slots/:postId", async (req, res) => {
+router.get("/reservationslots/:postId", async (req, res) => {
   try {
     const slots = await ReservationSlot.findAll({
       where: {

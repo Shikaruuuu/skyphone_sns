@@ -50,7 +50,7 @@ app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
-app.use("api/reservations", reservationRoute);
+app.use("/api/reservations", reservationRoute);
 
 // グローバルエラーハンドラー
 app.use((err, req, res, next) => {

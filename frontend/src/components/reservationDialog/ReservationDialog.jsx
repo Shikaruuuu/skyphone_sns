@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -11,6 +11,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
 import axios from "axios";
+import { AuthContext } from "../../state/AuthContext";
 
 export default function ReservationDialog({ open, onClose, postId }) {
   const [slots, setSlots] = useState([]);
@@ -18,11 +19,14 @@ export default function ReservationDialog({ open, onClose, postId }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [availableTimes, setAvailableTimes] = useState([]);
   const [selectedTime, setSelectedTime] = useState("");
+  const { user: currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchSlots = async () => {
       try {
-        const response = await axios.get(`/api/reservationslots/${postId}`);
+        const response = await axios.get(
+          `/reservations/reservationslots/${postId}`
+        );
         setSlots(response.data);
 
         // 予約可能な日付を抽出
@@ -68,9 +72,10 @@ export default function ReservationDialog({ open, onClose, postId }) {
     try {
       const selectedDateTime =
         dayjs(selectedDate).format("YYYY-MM-DD") + "T" + selectedTime;
-      await axios.post(`/api/reservations`, {
+      await axios.post(`/reservations`, {
+        userId: currentUser.id,
         postId,
-        slotDate: selectedDateTime,
+        requestedDate: selectedDateTime,
         status: "pending",
       });
       onClose();
