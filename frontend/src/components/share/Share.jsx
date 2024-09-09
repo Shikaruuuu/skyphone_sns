@@ -1,18 +1,20 @@
 import React, { useContext, useRef, useState } from "react";
-import { Image } from "@mui/icons-material";
 import "./Share.css";
 import { AuthContext } from "../../state/AuthContext";
 import axios from "axios";
+import { DatePicker, TimePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 
 export default function Share() {
-  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user } = useContext(AuthContext);
   const title = useRef();
   const content = useRef();
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("other");
   const [reservationSlots, setReservationSlots] = useState([
-    { date: "", time: "" },
+    { date: dayjs(), time: dayjs() },
   ]);
   const [img, setImg] = useState();
 
@@ -26,10 +28,15 @@ export default function Share() {
       content: content.current.value,
       price: price,
       category: category,
-      slots: reservationSlots.map((slot) => {
-        const dateTime = `${slot.date}T${slot.time}:00`;
-        return new Date(dateTime).toISOString();
-      }),
+      slots: reservationSlots
+        .filter((slot) => slot.date && slot.time) // 日付と時間が両方選択されているスロットのみを送信
+        .map((slot) => {
+          const dateTime = slot.date
+            .hour(slot.time.hour())
+            .minute(slot.time.minute())
+            .second(0);
+          return dateTime.toISOString();
+        }),
     };
 
     if (img) {
@@ -54,18 +61,26 @@ export default function Share() {
   };
 
   const handleAddSlot = () => {
-    setReservationSlots([...reservationSlots, { date: "", time: "" }]);
+    setReservationSlots([
+      ...reservationSlots,
+      { date: dayjs(), time: dayjs() },
+    ]);
   };
 
-  const handleSlotChange = (index, field, value) => {
+  const handleDateChange = (index, newDate) => {
     const updatedSlots = [...reservationSlots];
-    updatedSlots[index][field] = value;
+    updatedSlots[index].date = newDate;
+    setReservationSlots(updatedSlots);
+  };
+
+  const handleTimeChange = (index, newTime) => {
+    const updatedSlots = [...reservationSlots];
+    updatedSlots[index].time = newTime;
     setReservationSlots(updatedSlots);
   };
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
-    console.log("Selected Category:", e.target.value); // ここで選択されたカテゴリーの値を確認できます
   };
 
   if (!user) {
@@ -132,20 +147,20 @@ export default function Share() {
             <span className="requestSlotTitle">予約リクエスト枠を追加</span>
             {reservationSlots.map((slot, index) => (
               <div key={index} className="shareSlot">
-                <input
-                  type="date"
-                  value={slot.date}
-                  onChange={(e) =>
-                    handleSlotChange(index, "date", e.target.value)
-                  }
-                />
-                <input
-                  type="time"
-                  value={slot.time}
-                  onChange={(e) =>
-                    handleSlotChange(index, "time", e.target.value)
-                  }
-                />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label="日付を選択"
+                    value={slot.date}
+                    onChange={(newDate) => handleDateChange(index, newDate)}
+                    renderInput={(params) => <input {...params} />}
+                  />
+                  <TimePicker
+                    label="時間を選択"
+                    value={slot.time}
+                    onChange={(newTime) => handleTimeChange(index, newTime)}
+                    renderInput={(params) => <input {...params} />}
+                  />
+                </LocalizationProvider>
               </div>
             ))}
             <button type="button" onClick={handleAddSlot}>
