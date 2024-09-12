@@ -84,9 +84,26 @@ export default function ReservationDialog({ open, onClose, postId }) {
     }
   };
 
-  // 指定された日付のみ有効化
+  // 指定された日付のみ有効化 + 今日以前の日付を無効化
   const disableUnavailableDates = (date) => {
-    return !availableDates.includes(dayjs(date).format("YYYY-MM-DD"));
+    const today = dayjs().startOf("day");
+    return (
+      dayjs(date).isBefore(today) ||
+      !availableDates.includes(dayjs(date).format("YYYY-MM-DD"))
+    );
+  };
+
+  const disablePastTimes = (time) => {
+    const currentTime = dayjs();
+    const isToday =
+      selectedDate && dayjs(selectedDate).isSame(currentTime, "day");
+    if (isToday) {
+      return dayjs(selectedDate)
+        .set("hour", time.split(":")[0])
+        .set("minute", time.split(":")[1])
+        .isBefore(currentTime);
+    }
+    return false;
   };
 
   return (
@@ -114,7 +131,10 @@ export default function ReservationDialog({ open, onClose, postId }) {
               予約可能な時間を選択してください
             </MenuItem>
             {availableTimes.map((time, index) => (
-              <MenuItem key={index} value={time}>
+              <MenuItem
+                key={index}
+                value={time}
+                disabled={disablePastTimes(time)}>
                 {time}
               </MenuItem>
             ))}
