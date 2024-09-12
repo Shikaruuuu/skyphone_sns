@@ -1,8 +1,8 @@
 .share {
     width: 100%;
-    height: 900px;
-    box-shadow: 3px 7px 13px -10px #65789f;
-    border-radius: 10px;
+    height: 100%;
+    /* box-shadow: 3px 7px 13px -10px #65789f;
+    border-radius: 10px; */
 }
 
 .shareWrapper {
@@ -96,11 +96,13 @@
 .requestSlotTitle{
     font-size: large;
     font-weight: bold;
+    margin-bottom: 100px;
 }
 
 .shareButtonWrapper{
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .shareButton {
@@ -113,3 +115,13 @@
     margin-top: 75px;
     align-self: center;
 }
+
+.shareReservationSlots {
+    max-height: 200px; /* 高さの制限を設定 */
+    overflow-y: auto;  /* 縦方向にスクロールを許可 */
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
