@@ -36,6 +36,21 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: "pending",
       },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+          isEmail: true, // Emailの形式をバリデーション
+        },
+      },
+      phoneNumber: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+          isNumeric: true, // 数字のみを許可するバリデーション
+          len: [10, 15], // 電話番号の長さを指定
+        },
+      },
     },
     {
       timestamps: true,

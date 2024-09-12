@@ -1,22 +1,42 @@
 const express = require("express");
 const router = express.Router();
+const sendEmail = require("../utils/sendEmail"); // メール送信ユーティリティをインポート
 const { Reservation, ReservationSlot, User, Post } = require("../models");
-
-// 予約を作成する
+// 予約リクエストを作成するエンドポイント
 router.post("/", async (req, res) => {
   try {
     const newReservation = await Reservation.create({
       userId: req.body.userId,
       postId: req.body.postId,
       requestedDate: req.body.requestedDate,
-      status: "pending", // デフォルトで "pending" 状態に設定
+      status: "pending",
+      email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
     });
-    return res.status(201).json(newReservation);
+    res.status(200).json(newReservation);
   } catch (err) {
-    console.error("Error creating reservation:", err);
-    return res.status(500).json({ message: "Failed to create reservation" });
+    console.error("Error creating reservation request:", err);
+    res
+      .status(500)
+      .json({ message: "Failed to create reservation request", error: err });
   }
 });
+
+// // 予約を作成する
+// router.post("/", async (req, res) => {
+//   try {
+//     const newReservation = await Reservation.create({
+//       userId: req.body.userId,
+//       postId: req.body.postId,
+//       requestedDate: req.body.requestedDate,
+//       status: "pending", // デフォルトで "pending" 状態に設定
+//     });
+//     return res.status(201).json(newReservation);
+//   } catch (err) {
+//     console.error("Error creating reservation:", err);
+//     return res.status(500).json({ message: "Failed to create reservation" });
+//   }
+// });
 
 // 特定の予約を取得する
 router.get("/:id", async (req, res) => {
@@ -111,21 +131,16 @@ router.get("/reservationslots/:postId", async (req, res) => {
   }
 });
 
-// 予約リクエストを作成するエンドポイント
-router.post("/", async (req, res) => {
+// メール送信用のエンドポイント
+router.post("/sendEmail", async (req, res) => {
+  const { to, subject, message } = req.body;
+
   try {
-    const newReservation = await Reservation.create({
-      userId: req.body.userId,
-      postId: req.body.postId,
-      requestedDate: req.body.requestedDate,
-      status: "pending",
-    });
-    res.status(200).json(newReservation);
-  } catch (err) {
-    console.error("Error creating reservation request:", err);
-    res
-      .status(500)
-      .json({ message: "Failed to create reservation request", error: err });
+    await sendEmail(to, subject, message);
+    return res.status(200).json({ message: "メールが送信されました" });
+  } catch (error) {
+    console.error("メール送信エラー:", error);
+    return res.status(500).json({ message: "メール送信に失敗しました" });
   }
 });
 
