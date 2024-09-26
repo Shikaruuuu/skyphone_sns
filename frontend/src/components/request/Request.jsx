@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./Request.css";
 import ReservationDialog from "../../components/reservationDialog/ReservationDialog";
+import ReservationDialogCalendar from "../reservationDialogCalendar/ReservationDialogCalendar";
 
 const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -65,7 +66,16 @@ export default function Request() {
           <button className="requestButton" onClick={handleOpen}>
             予約リクエスト
           </button>
-          <ReservationDialog
+          {/* <ReservationDialog
+            open={open}
+            onClose={handleClose}
+            postId={post.id}
+            postTitle={post.title}
+            postContent={post.content}
+            postPrice={post.price}
+            postUserName={user.username}
+          /> */}
+          <ReservationDialogCalendar
             open={open}
             onClose={handleClose}
             postId={post.id}

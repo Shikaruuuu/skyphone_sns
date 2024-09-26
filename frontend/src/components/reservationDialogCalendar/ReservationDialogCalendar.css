@@ -1,0 +1,24 @@
+.reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .reservation-table th, .reservation-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  .available-slot {
+    background-color: #e6ffe6;
+    cursor: pointer;
+  }
+  
+  .unavailable-slot {
+    background-color: #ffe6e6;
+  }
+  
+  .available-slot:hover {
+    background-color: #b3ffb3;
+  }
+  
