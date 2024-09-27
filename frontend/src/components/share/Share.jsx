@@ -6,6 +6,7 @@ import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
+import { MenuItem, Select } from "@mui/material";
 
 export default function Share() {
   const { user } = useContext(AuthContext);
@@ -91,24 +92,23 @@ export default function Share() {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <span className="title">相談タイトル</span>
+          <span className="title">プロフィール名</span>
           <input
             type="text"
             className="inputTitle"
-            placeholder="相談タイトルを入力してください。"
+            placeholder="プロフィール名を入力してください。"
             ref={title}
           />
         </div>
         <div className="shareMiddle">
-          <span className="content">相談内容</span>
-          <input
-            type="text"
+          <span className="content">プロフィール説明</span>
+          <textarea
             className="inputContent"
-            placeholder="相談内容を入力してください。"
+            placeholder="経歴やスキルなど、相談対応可能な内容の詳細を入力してください。"
             ref={content}
           />
         </div>
-        <div className="img">
+        <div className="inputImg">
           <label>サムネイル画像</label>
           <input
             type="file"
@@ -120,29 +120,31 @@ export default function Share() {
         <form className="shareButtons" onSubmit={(e) => handleSubmit(e)}>
           <div className="categorySetting">
             <span className="categoryTitle">カテゴリーを選択</span>
-            <select
-              onChange={handleCategoryChange}
+            <Select
+              id="demo-simple-select"
               value={category}
-              className="categorySelect">
-              <option value="business">仕事の相談</option>
-              <option value="study">勉強の相談</option>
-              <option value="love">恋愛相談</option>
-              <option value="relationship">人間関係の相談</option>
-              <option value="family">家族に関する相談</option>
-              <option value="other">その他</option>
-            </select>
+              onChange={handleCategoryChange}>
+              <MenuItem value="business">仕事の相談</MenuItem>
+              <MenuItem value="study">勉強の相談</MenuItem>
+              <MenuItem value="love">恋愛相談</MenuItem>
+              <MenuItem value="relationship">人間関係の相談</MenuItem>
+              <MenuItem value="family">家族に関する相談</MenuItem>
+              <MenuItem value="other">その他</MenuItem>
+            </Select>
           </div>
           <div className="priceSetting">
             <span className="priceTitle">サービス価格</span>
-            <input
-              type="number"
-              placeholder="価格を設定"
-              className="inputTitle"
-              value={price}
-              onChange={(e) => setPrice(Number(e.target.value))}
-            />
+            <div className="priceWrapper">
+              <input
+                type="number"
+                placeholder="金額を入力してください"
+                className="inputTitle priceInput"
+                value={price}
+                onChange={(e) => setPrice(Number(e.target.value))}
+              />
+              <span className="currency">円</span>
+            </div>
           </div>
-
           <div className="shareReservationSlots">
             <span className="requestSlotTitle">予約リクエスト枠を追加</span>
             {reservationSlots.map((slot, index) => (

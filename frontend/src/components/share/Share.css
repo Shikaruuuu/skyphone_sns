@@ -44,21 +44,30 @@
 }
 
 .inputContent {
-    border: none;
-    width: 100%;
-    height: 400px;
-    outline-color: #59b7f5;
+  border: none;
+  width: 95%;
+  height: 200px; /* 高さは自由に変更可能 */
+  resize: vertical; /* ユーザーが高さを変更できるようにする場合 */
+  outline-color: #59b7f5;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .inputContent:focus {
-    /* outline: none; */
+  /* 必要に応じて追加のスタイルを設定 */
+  outline: none;
+  border: 1px solid #59b7f5;
 }
 
-.img{
+.inputImg{
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
-    left:0
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    font-size: large;
+    font-weight: bold;
 }
 
 .img label {
@@ -125,3 +134,35 @@
     border-radius: 5px;
   }
   
+.categorySetting{
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.categoryTitle{
+  font-size: large;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.priceWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.priceInput {
+  text-align: right;
+  padding-right: 40px; /* 円マークが重ならないように右側にスペースを確保 */
+}
+
+.currency {
+  position: absolute;
+  right: 10px;
+  font-size: 1rem;
+  color: #333;
+}
