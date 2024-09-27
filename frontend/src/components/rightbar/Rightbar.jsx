@@ -18,7 +18,7 @@ export default function Rightbar() {
               to={`/createPost/${user.id}`}
               className="rightbarListItemText"
               style={{ textDecoration: "none", color: "black" }}>
-              <span className="rightbarListItemText">相談を作成</span>
+              <span className="rightbarListItemText">プロフィール作成</span>
             </Link>
           </li>
           <li className="rightbarListItem">
@@ -27,7 +27,7 @@ export default function Rightbar() {
               to={`/followingList/${user.id}/followings`}
               className="rightbarListItemText"
               style={{ textDecoration: "none", color: "black" }}>
-              <span className="rightbarListItemText">相談管理</span>
+              <span className="rightbarListItemText">プロフィール管理</span>
             </Link>
           </li>
           <li className="rightbarListItem">

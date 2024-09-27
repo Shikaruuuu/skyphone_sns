@@ -21,7 +21,7 @@ export default function Hamburger() {
               to={`/createPost/${user.id}`}
               className="navbarLink"
               style={{ textDecoration: "none", color: "black" }}>
-              <span className="navbarListItemText">相談を作成</span>
+              <span className="navbarListItemText">プロフィール作成</span>
             </Link>
           </li>
           <li className="navbarListItem">
@@ -29,7 +29,7 @@ export default function Hamburger() {
               to={`/followingList/${user.id}/followings`}
               className="navbarListItemText"
               style={{ textDecoration: "none", color: "black" }}>
-              <span className="navbarListItemText">相談管理</span>
+              <span className="navbarListItemText">プロフィール管理</span>
             </Link>
           </li>
           <li className="navbarListItem">
