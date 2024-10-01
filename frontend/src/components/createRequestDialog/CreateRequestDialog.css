@@ -1,0 +1,26 @@
+.createDialogContent{
+    display: flex;
+    flex-direction: column;
+}
+
+.createTimesetting{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.repetitionSetting{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.repetitionNumberInput{
+    width: 50px;
+    height: 50px;
+}
+
+.repetitionNumberSetting{
+    display: flex;
+    flex-direction: column;
+}

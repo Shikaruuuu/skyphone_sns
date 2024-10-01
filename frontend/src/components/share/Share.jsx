@@ -7,6 +7,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { MenuItem, Select } from "@mui/material";
+import CreateRequestDialog from "../createRequestDialog/CreateRequestDialog";
 
 export default function Share() {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,14 @@ export default function Share() {
     { date: dayjs(), time: dayjs() },
   ]);
   const [img, setImg] = useState();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -145,29 +154,11 @@ export default function Share() {
               <span className="currency">円</span>
             </div>
           </div>
-          <div className="shareReservationSlots">
-            <span className="requestSlotTitle">予約リクエスト枠を追加</span>
-            {reservationSlots.map((slot, index) => (
-              <div key={index} className="shareSlot">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label="日付を選択"
-                    value={slot.date}
-                    onChange={(newDate) => handleDateChange(index, newDate)}
-                    renderInput={(params) => <input {...params} />}
-                  />
-                  <TimePicker
-                    label="時間を選択"
-                    value={slot.time}
-                    onChange={(newTime) => handleTimeChange(index, newTime)}
-                    renderInput={(params) => <input {...params} />}
-                  />
-                </LocalizationProvider>
-              </div>
-            ))}
-            <button type="button" onClick={handleAddSlot}>
-              + 追加
+          <div className="requestBottom">
+            <button className="requestButton" onClick={handleOpen}>
+              予約リクエスト枠を作成
             </button>
+            <CreateRequestDialog open={open} onClose={handleClose} />
           </div>
           <button className="shareButton" type="submit">
             公開する
