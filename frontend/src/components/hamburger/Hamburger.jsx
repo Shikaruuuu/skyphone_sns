@@ -37,7 +37,7 @@ export default function Hamburger() {
               to={`/followingList/${user.id}/followings`}
               className="navbarListItemText"
               style={{ textDecoration: "none", color: "black" }}>
-              <span className="navbarListItemText">リクエスト管理</span>
+              <span className="navbarListItemText">受信リクエスト管理</span>
             </Link>
           </li>
           <li className="navbarListItem">
@@ -45,23 +45,7 @@ export default function Hamburger() {
               to={`/followingList/${user.id}/followings`}
               className="navbarListItemText"
               style={{ textDecoration: "none", color: "black" }}>
-              <span className="navbarListItemText">フォロー中</span>
-            </Link>
-          </li>
-          <li className="navbarListItem">
-            <Link
-              to={`/followerList/${user.id}/followers`}
-              className="navbarListItemText"
-              style={{ textDecoration: "none", color: "black" }}>
-              <span className="navbarListItemText">フォロワー</span>
-            </Link>
-          </li>
-          <li className="navbarListItem">
-            <Link
-              to={user ? `/profile/${user.id}` : "/login"}
-              className="navbarListItemText"
-              style={{ textDecoration: "none", color: "black" }}>
-              <span className="navbarListItemText">プロフィール</span>
+              <span className="navbarListItemText">送信リクエスト管理</span>
             </Link>
           </li>
           <li className="navbarListItem">
@@ -69,7 +53,7 @@ export default function Hamburger() {
               to={user ? `/settings/${user.id}` : "/login"}
               className="navbarListItemText"
               style={{ textDecoration: "none", color: "black" }}>
-              <span className="navbarListItemText">設定</span>
+              <span className="navbarListItemText">アカウント設定</span>
             </Link>
           </li>
         </ul>

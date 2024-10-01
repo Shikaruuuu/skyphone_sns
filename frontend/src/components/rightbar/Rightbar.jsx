@@ -13,16 +13,14 @@ export default function Rightbar() {
       <div className="rightbarWrapper">
         <ul className="rightbarList">
           <li className="rightbarListItem">
-            <Person className="rightbarIcon" />
             <Link
               to={`/createPost/${user.id}`}
-              className="rightbarListItemText"
+              className="navbarLink"
               style={{ textDecoration: "none", color: "black" }}>
               <span className="rightbarListItemText">プロフィール作成</span>
             </Link>
           </li>
           <li className="rightbarListItem">
-            <Person className="rightbarIcon" />
             <Link
               to={`/followingList/${user.id}/followings`}
               className="rightbarListItemText"
@@ -31,48 +29,27 @@ export default function Rightbar() {
             </Link>
           </li>
           <li className="rightbarListItem">
-            <Person className="rightbarIcon" />
             <Link
               to={`/followingList/${user.id}/followings`}
               className="rightbarListItemText"
               style={{ textDecoration: "none", color: "black" }}>
-              <span className="rightbarListItemText">リクエスト管理</span>
+              <span className="rightbarListItemText">受信リクエスト管理</span>
             </Link>
           </li>
           <li className="rightbarListItem">
-            <Person className="rightbarIcon" />
             <Link
               to={`/followingList/${user.id}/followings`}
               className="rightbarListItemText"
               style={{ textDecoration: "none", color: "black" }}>
-              <span className="rightbarListItemText">フォロー中</span>
+              <span className="rightbarListItemText">送信リクエスト管理</span>
             </Link>
           </li>
           <li className="rightbarListItem">
-            <Person className="rightbarIcon" />
-            <Link
-              to={`/followerList/${user.id}/followers`}
-              className="rightbarListItemText"
-              style={{ textDecoration: "none", color: "black" }}>
-              <span className="rightbarListItemText">フォロワー</span>
-            </Link>
-          </li>
-          <li className="rightbarListItem">
-            <Person className="rightbarIcon" />
-            <Link
-              to={user ? `/profile/${user.id}` : "/login"}
-              className="rightbarLink"
-              style={{ textDecoration: "none", color: "black" }}>
-              <span className="rightbarListItemText">プロフィール</span>
-            </Link>
-          </li>
-          <li className="rightbarListItem">
-            <SettingsIcon className="rightbarIcon" />
             <Link
               to={user ? `/settings/${user.id}` : "/login"}
-              className="rightbarLink"
+              className="rightbarListItemText"
               style={{ textDecoration: "none", color: "black" }}>
-              <span className="rightbarListItemText">設定</span>
+              <span className="rightbarListItemText">アカウント設定</span>
             </Link>
           </li>
         </ul>
