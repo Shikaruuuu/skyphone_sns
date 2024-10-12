@@ -27,7 +27,6 @@ export default function CreatePost() {
     <>
       {windowWidth >= 1036 ? <Topbar /> : <TopbarMobile />}
       <div className="createPostContainer">
-        {/* <Sidebar /> */}
         <Share />
         {windowWidth >= 1036 ? <Rightbar /> : <Hamburger />}
       </div>

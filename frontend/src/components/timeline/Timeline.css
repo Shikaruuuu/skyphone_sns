@@ -5,14 +5,14 @@
 .timelineWrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* 左詰めにする */
+    justify-content: center;
     padding: 20px;
     flex-direction: column;
 }
 
 .timelineWrapper .post {
-    width: calc(33% - 10px); /* 4つ並べるために25%幅に設定 */
-    margin: 5px; /* カード間のスペースを調整 */
+    width: calc(33% - 10px);
+    margin: 5px;
 }
 
 .categorySection {

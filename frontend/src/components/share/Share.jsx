@@ -94,7 +94,7 @@ export default function Share() {
   };
 
   if (!user) {
-    return null; // user が null なら何も表示しない
+    return null;
   }
 
   return (
@@ -106,6 +106,13 @@ export default function Share() {
             type="text"
             className="inputTitle"
             placeholder="プロフィール名を入力してください。"
+            ref={title}
+          />
+          <span className="title">相談タイトル</span>
+          <input
+            type="text"
+            className="inputTitle"
+            placeholder="相談タイトルを入力してください。"
             ref={title}
           />
         </div>

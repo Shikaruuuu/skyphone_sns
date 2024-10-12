@@ -5,19 +5,19 @@ const sendEmail = async (to, subject, text) => {
   try {
     // SMTP サーバーの設定
     const transporter = nodemailer.createTransport({
-      service: "gmail", // Gmailを使用する場合
+      service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER, // 環境変数でメールアカウントを管理
-        pass: process.env.EMAIL_PASS, // アプリパスワードやGoogleアカウントのパスワード
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // メールの内容
     const mailOptions = {
-      from: process.env.EMAIL_USER, // 送信者メールアドレス
-      to, // 受信者メールアドレス
-      subject, // メールの件名
-      text, // メールの本文
+      from: process.env.EMAIL_USER,
+      to,
+      subject,
+      text,
     };
 
     // メールを送信

@@ -16,6 +16,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { DatePicker, DateTimePicker } from "@mui/x-date-pickers";
 
 export default function CreateRequestDialog({ open, onClose }) {
   const [slots, setSlots] = useState([]);
@@ -60,8 +61,8 @@ export default function CreateRequestDialog({ open, onClose }) {
             <FormControlLabel control={<Checkbox />} label="繰り返す" />
           </FormGroup>
           <div className="repetitionSetting">
+            <span className="repetitionNumberSettingTitle">繰り返し間隔</span>
             <div className="repetitionNumberSetting">
-              <span className="repetitionNumberSettingTitle">回数</span>
               <input
                 type="number"
                 placeholder="数字をを入力してください"
@@ -72,7 +73,8 @@ export default function CreateRequestDialog({ open, onClose }) {
             </div>
             <Select
               value={repetitionUnit}
-              onChange={handleRepetitionUnitChange}>
+              onChange={handleRepetitionUnitChange}
+              defaultValue="日ごと">
               <MenuItem value="study">日ごと</MenuItem>
               <MenuItem value="love">週ごと</MenuItem>
               <MenuItem value="relationship">月ごと</MenuItem>

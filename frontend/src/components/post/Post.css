@@ -14,7 +14,7 @@
 .postImageContainer {
     width: 100%;
     height: 0px;
-    padding-bottom: 100%; /* 正方形を維持 */
+    padding-bottom: 100%;
     position: relative;
 }
 

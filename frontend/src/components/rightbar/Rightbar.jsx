@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import { Person } from "@mui/icons-material";
-import SettingsIcon from "@mui/icons-material/Settings";
 import "./Rightbar.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../state/AuthContext";

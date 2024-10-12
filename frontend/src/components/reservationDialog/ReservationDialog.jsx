@@ -82,7 +82,7 @@ export default function ReservationDialog({
   };
 
   const handleConfirmation = () => {
-    setShowConfirmation(true); // 確認画面を表示
+    setShowConfirmation(true);
   };
 
   const validateEmail = (email) => {
@@ -121,7 +121,7 @@ export default function ReservationDialog({
         phoneNumber: phoneNumber,
       });
 
-      // メール送信（仮想のエンドポイントを作成する必要があります）
+      // メール送信
       await axios.post(`/reservations/sendEmail`, {
         to: email,
         subject: "予約リクエスト確認",
@@ -130,7 +130,7 @@ export default function ReservationDialog({
 
       // メッセージを表示し、ホーム画面に遷移
       alert("リクエストを送信しました");
-      navigate("/"); // ホーム画面に遷移
+      navigate("/");
     } catch (err) {
       console.error("Error submitting reservation request:", err);
     } finally {

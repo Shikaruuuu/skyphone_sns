@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
     });
 
     // 予約枠を作成する
-    const slots = req.body.slots; // slotsはフロントエンドから送信される
+    const slots = req.body.slots;
     if (slots && slots.length > 0) {
       const slotPromises = slots.map((slot) =>
         ReservationSlot.create({
@@ -68,7 +68,7 @@ router.delete("/:id", async (req, res) => {
     const post = await Post.findByPk(req.params.id);
     if (post.userId === req.body.userId) {
       await post.destroy();
-      await ReservationSlot.destroy({ where: { postId: post.id } }); // 予約枠も削除する
+      await ReservationSlot.destroy({ where: { postId: post.id } });
       return res.status(200).json("投稿の削除に成功しました");
     } else {
       return res.status(403).json("あなたは他の人の投稿を削除できません");
@@ -130,7 +130,7 @@ router.get("/timeline/all", async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["username", "profilePicture"], // 必要なユーザー情報を指定
+          attributes: ["username", "profilePicture"],
         },
       ],
       order: [["createdAt", "DESC"]],

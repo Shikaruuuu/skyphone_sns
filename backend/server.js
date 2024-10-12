@@ -14,7 +14,7 @@ const cors = require("cors");
 
 // CORS設定
 const corsOptions = {
-  origin: "*", // すべてのオリジンを許可
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };

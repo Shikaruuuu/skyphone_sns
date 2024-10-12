@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const sendEmail = require("../utils/sendEmail"); // メール送信ユーティリティをインポート
+const sendEmail = require("../utils/sendEmail");
 const { Reservation, ReservationSlot, User, Post } = require("../models");
-// 予約リクエストを作成するエンドポイント
+// 予約リクエストを作成する
 router.post("/", async (req, res) => {
   try {
     const newReservation = await Reservation.create({
@@ -21,22 +21,6 @@ router.post("/", async (req, res) => {
       .json({ message: "Failed to create reservation request", error: err });
   }
 });
-
-// // 予約を作成する
-// router.post("/", async (req, res) => {
-//   try {
-//     const newReservation = await Reservation.create({
-//       userId: req.body.userId,
-//       postId: req.body.postId,
-//       requestedDate: req.body.requestedDate,
-//       status: "pending", // デフォルトで "pending" 状態に設定
-//     });
-//     return res.status(201).json(newReservation);
-//   } catch (err) {
-//     console.error("Error creating reservation:", err);
-//     return res.status(500).json({ message: "Failed to create reservation" });
-//   }
-// });
 
 // 特定の予約を取得する
 router.get("/:id", async (req, res) => {
